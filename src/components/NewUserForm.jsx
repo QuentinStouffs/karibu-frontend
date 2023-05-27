@@ -54,10 +54,10 @@ const NewUserForm = props => {
         else if( !user.email.includes('@') ) {
             setError({ email : "Veuillez entrer un email valide", isError: true})
         }
-        else if( !user.password ) {
+        else if( !user.password && !props.user ) {
             setError({ password : "Veuillez entrer un password", isError: true})
         }
-        else if( user.password !== user.confirmpassword ) {
+        else if( user.password !== user.confirmpassword && !props.user) {
             setError({ password : "La vérification du password ne correspond pas", isError: true})
         }
 
@@ -65,10 +65,10 @@ const NewUserForm = props => {
 
     useEffect(()=>{
         if(props.user){
-            const { id, username, last_name, password, name, first_name, email } = props.user
-            setUser({id, username, last_name, password, name, first_name, email})
+            const { id, username, last_name, name, first_name, email } = props.user
+            setUser({id, username, last_name, name, first_name, email})
         }
-    })
+    }, [])
 
     const createUser = e => {
         e.preventDefault();
@@ -88,10 +88,10 @@ const NewUserForm = props => {
     }
 
 
-
+    
     const editUser = e => {
         e.preventDefault();
-        axios.post(API_URL+"api/users/", user)
+        axios.put(API_URL+"api/users/"+user.id+"/", user)
             .then(()=> {
                 setUser(initialState)
                 props.onClose()

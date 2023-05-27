@@ -1,7 +1,6 @@
-// Import the react JS packages
 import {useEffect, useState} from "react";
 import axios from "axios";
-// Define the Login function.
+import jwtDecode from "jwt-decode";
 const Home = () => {
     //  const [message, setMessage] = useState('');
     //  useEffect(() => {
@@ -23,6 +22,7 @@ const Home = () => {
     //       }
     //      })()};
     //  }, []);
+
      return (
         <div className="form-signin mt-5 text-center">
           <h3>Hi </h3>

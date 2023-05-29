@@ -46,12 +46,26 @@ const Points = () => {
         })()
     }, [user])
 
+    const deletePoint = id => {
+        try {
+            axios.delete(   
+                        API_URL+'api/artisan/'+id+"/", {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }}
+                    );
+                    window.location.reload(false);
+               } catch (e) {
+                 console.log('not deleted', e)
+               }
+    }
+
     let tablecontent = points.map((point) => 
-        <tr>
+        <tr key={point.id}>
             <td>{point.name}</td>
             <td>{point.address + " - " + point.zipcode + " " + point.city}</td>
-            <td>{point.type.map((type)=><span>{type.name} </span>)}</td>
-            <td><a href="#" title="modifier">Modifier</a></td>
+            <td>{point.type.map((type)=><span key={'type-'+type.id}>{type.name} </span>)}</td>
+            <td><a href="#" title="modifier">Modifier</a><a href="#" onClick={() => deletePoint(point.id)} title="Supprimer">Supprimer</a></td>
         </tr>
     );
 
@@ -61,12 +75,16 @@ const Points = () => {
             <a href="/new-artisan/" title="Créer un nouveau point de vente">Créer un nouveau point de vente</a>
             <table>
                 <thead>
-                    <td>Nom</td>
-                    <td>Adresse</td>
-                    <td>Types d'artisanat</td>
-                    <td>Options</td>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Adresse</td>
+                        <td>Types d'artisanat</td>
+                        <td>Options</td>
+                    </tr>
                 </thead>
-                {tablecontent}
+                <tbody>
+                    {tablecontent}
+                </tbody>
             </table>
         </div>
     )

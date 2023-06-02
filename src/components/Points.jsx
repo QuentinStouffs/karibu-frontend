@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import { API_URL } from "../constants";
 import jwtDecode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 const Points = () => {
     const [user, setUser] = useState('');
@@ -65,7 +66,10 @@ const Points = () => {
             <td>{point.name}</td>
             <td>{point.address + " - " + point.zipcode + " " + point.city}</td>
             <td>{point.type.map((type)=><span key={'type-'+type.id}>{type.name} </span>)}</td>
-            <td><a href="#" title="modifier">Modifier</a><a href="#" onClick={() => deletePoint(point.id)} title="Supprimer">Supprimer</a></td>
+            <td>
+                <Link to={`/modify/${point.id}`}>Modifier</Link>
+            
+            <a href="#" onClick={() => deletePoint(point.id)} title="Supprimer">Supprimer</a></td>
         </tr>
     );
 

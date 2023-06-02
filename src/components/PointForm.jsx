@@ -5,13 +5,12 @@ import jwtDecode from "jwt-decode";
 import Select from "react-select";
 const PointForm = props => {
     const [types, setTypes] = useState([])
-    
     useEffect(()=>{
         let token=jwtDecode(localStorage.getItem('access_token'))
         setArtisan({...artisan, user : token.user_id})
         if(props.artisan){
-            const { id, name, user, address, phone, website, zipcode, city,types } = props.artisan;
-            setArtisan({ id, name, user, address, phone, website, zipcode, city,types });
+            const { id, name, user, address, phone, website, zipcode, city, type } = props.artisan;
+            setArtisan({ id, name, user, address, phone, website, zipcode, city, type });
         }
 
         (async () => {
@@ -57,16 +56,17 @@ const PointForm = props => {
 
     const [ artisan, setArtisan ] = useState(initialArtisan);
     const [ error, setError ] = useState(initialerror);
-    const [selectedTypes, setSelectedTypes] = useState([])
-    
+
     const onSelectChange = newValue => {
         let val = newValue.map( item => item.id)
-        setArtisan(artisan => ({...artisan, types: val}))
+        setArtisan(artisan => ({...artisan, types: val, type: newValue}))
     }
-    
-    useEffect(()=>{
-        console.log(artisan)
+
+    useEffect(()=> {
+        console.log(artisan.types)
     }, [artisan])
+    
+   
     const createArtisan = e => {
         e.preventDefault();
         sendArtisan()
@@ -87,14 +87,14 @@ const PointForm = props => {
     const onChange = e => {
         setArtisan(artisan=> ({...artisan, [e.target.name]: e.target.value }))
     }
-    
+
 
     const editArtisan = e => {
         e.preventDefault();
-        axios.put(API_URL + "api/artisan/"+artisan.id+"/", artisan)
+        axios.put(API_URL + "api/artisan/"+artisan.id+"/modify/", artisan)
                 .then(()=>{
                     setArtisan(initialArtisan)
-                    props.onClose()
+                    // window.location.href='/mes-points-de-vente/'
                 });
     }
     
@@ -119,7 +119,7 @@ const PointForm = props => {
         }
         else if( !artisan.website ) {
             setError({ website : "Veuillez entrer un site web", isError: true})
-        }else if(selectedTypes.length === 0){
+        }else if(artisan.type.length === 0){
             setError({ types : "Veuillez choisir au moins un type", isError: true})
         }
 
@@ -159,7 +159,7 @@ const PointForm = props => {
             </fieldset> 
             <fieldset id="type">
                 <label htmlFor="types">Types d'artisan</label>
-                <Select onChange={e => {onSelectChange(e); validate(e);}} onBlur={validate} isMulti name="types" className="basic-multi-select" classNamePrefix="select" options={types} getOptionLabel={option => option.name} getOptionValue={option => option.id}/>
+                <Select onChange={e => {onSelectChange(e); validate(e);}} onBlur={validate} isMulti name="types" className="basic-multi-select" classNamePrefix="select" value={artisan.type} options={types} getOptionLabel={option => option.name} getOptionValue={option => option.id}/>
                 {error.types && <span className='err'>{error.types}</span>}
             </fieldset> 
             <button type="submit">envoyer</button>

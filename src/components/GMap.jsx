@@ -44,17 +44,10 @@ const GMap = () => {
         )))
     },[artisans])
 
-    // const handleMarkerClick = (artisan) => {
-    //     setSelectedMarker(artisan.id)
-    //     console.log(selectedMarker)
-    //   setInfoWindowData({artisan});
-    //   setInfoWindowIsOpen(true);
-    // }
-
     function onPlaceChanged() {
         
         console.log(searchResult)
-        if (searchResult != null) {
+        if (searchResult != null && typeof searchResult.getPlace === "function") {
           //variable to store the result
           const place = searchResult.getPlace();
           //variable to store the formatted address from place details result
@@ -62,10 +55,9 @@ const GMap = () => {
           getGeometry(formattedAddress)
           
         } else {
-          alert("Please enter text");
+            onPlaceChanged()
         }
       }
-
 
 const getGeometry = (address) => {
 

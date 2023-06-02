@@ -1,0 +1,21 @@
+.navigation__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px;
+    position: fixed;
+    right: 5px;
+    top: 75px;
+    background-color: black;
+    border: 1px solid #ccc;
+    z-index: 9;
+    a {
+        color: white;
+        text-decoration: none;
+        line-height: 1.8em;
+        border-bottom: 1px solid #ccc;
+        &:last-of-type {
+            border: none;
+        }
+    }
+}

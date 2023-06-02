@@ -1,6 +1,0 @@
-V liste artisans par nom
-Vcréer artisan 
--modifier artisan 
-V supprimer artisan (methode)
--carte 
--recherche

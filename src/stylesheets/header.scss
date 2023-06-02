@@ -1,7 +1,22 @@
 .header {
     display: flex;
     justify-content: space-between;
+    height: 75px;
+    background-color: black;
+    color: white;
     .header__logo{
         display: flex;
+    }
+    h1 {
+        display: none;
+    }
+    &__menu_icon{
+        font-size: 30px;
+        cursor: pointer;
+    }
+    &__menu_container {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
     }
 }

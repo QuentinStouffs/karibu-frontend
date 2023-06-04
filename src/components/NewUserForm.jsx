@@ -4,6 +4,9 @@ import axios from "axios";
 
 import { API_URL } from "../constants";
 
+import '../stylesheets/userform.scss';
+
+
 const NewUserForm = props => {
     
 
@@ -99,7 +102,7 @@ const NewUserForm = props => {
     }
 
     return (
-        <form id="formUser" onSubmit={props.user ? editUser : createUser}>
+        <form id="formUser" className="userform" onSubmit={props.user ? editUser : createUser}>
            <fieldset>
                 <label htmlFor="username">Username</label>
                 <input type="text" name="username" onChange={e => {onChange(e); validate(e);}} value={user.username!="" ? user.username : ""}></input>

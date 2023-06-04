@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import axios from "axios";
 import { API_URL } from "../constants";
 
@@ -6,7 +6,7 @@ const Logout = () => {
     useEffect(()=> {
         (async()=>{
             try{
-                const {data} = await axios.post(API_URL+"logout/", {
+                await axios.post(API_URL+"logout/", {
                     refresh_token: localStorage.getItem('refresh_token')
                     }, {headers: {'Content-Type': 'application/json'}},
                     {withCredentials: true});

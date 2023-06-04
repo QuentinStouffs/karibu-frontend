@@ -1,5 +1,5 @@
-import { GoogleMap, Marker, InfoWindow, useLoadScript, Autocomplete } from "@react-google-maps/api";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { GoogleMap, Marker, useLoadScript, Autocomplete } from "@react-google-maps/api";
+import { useEffect, useRef, useState } from "react";
 import '../stylesheets/gmap.scss'
 import axios from "axios";
 import { API_URL } from "../constants";

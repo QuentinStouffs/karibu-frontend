@@ -3,6 +3,9 @@ import axios from "axios";
 import { API_URL } from "../constants";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import '../stylesheets/points-list.scss';
 
 const Points = () => {
     const [user, setUser] = useState('');
@@ -67,17 +70,17 @@ const Points = () => {
             <td>{point.address + " - " + point.zipcode + " " + point.city}</td>
             <td>{point.type.map((type)=><span key={'type-'+type.id}>{type.name} </span>)}</td>
             <td>
-                <Link to={`/modify/${point.id}`}>Modifier</Link>
+                <Link to={`/modify/${point.id}`} className="actionBtn" ><FontAwesomeIcon icon={faPenToSquare} /></Link>
             
-            <a href="#" onClick={() => deletePoint(point.id)} title="Supprimer">Supprimer</a></td>
+            <a href="#" className="actionBtn" onClick={() => deletePoint(point.id)} title="Supprimer"><FontAwesomeIcon icon={faTrash} /></a></td>
         </tr>
     );
 
     
     return (
-        <div>
-            <a href="/new-artisan/" title="Créer un nouveau point de vente">Créer un nouveau point de vente</a>
-            <table>
+        <div className="points-list">
+            <a href="/new-artisan/" title="Créer un nouveau point de vente" className="points-list__new_button">Créer un nouveau point de vente</a>
+            <table className="points-list__list">
                 <thead>
                     <tr>
                         <td>Nom</td>

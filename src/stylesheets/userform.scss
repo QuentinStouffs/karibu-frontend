@@ -1,0 +1,55 @@
+@import 'variables';
+
+.userform {
+    width: 100%;
+    max-width: 500px;
+    margin: 100px 0;
+    color: $font-color;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    fieldset {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    label, input {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+    label {
+        text-align: start;
+    }
+    input {
+        height: 3em;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid $secondary-color;
+        background-color: $dark-color;
+        color: $font-color;
+    }
+
+    .err {
+        color: red;
+    }
+
+    button {
+        background-color: $dark-color;
+        border: 1px solid $secondary-color;
+        border-radius:  5px;
+        padding: 10px 15px;
+        display: flex;
+        flex: 0 1 auto;
+        width: max-content;
+        justify-content: center;
+        align-items: center;
+        margin: 50px auto;
+        font-size: 20px;
+        color: $font-color;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+}

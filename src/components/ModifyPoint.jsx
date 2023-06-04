@@ -1,21 +1,21 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { API_URL } from "../constants";
-import jwtDecode from "jwt-decode";
-import Select from "react-select";
 import PointForm from "./PointForm";
 import { useParams } from "react-router-dom";
+
+import '../stylesheets/point.scss';
+
 const ModifyPoint = props => {
     if(localStorage.getItem('access_token') === null){                   
         window.location.href = '/login'
     }
-    const {id} = useParams();
     const [pdv, setPdv] = useState();
-
+    const {id} = useParams();
+    
     useEffect(()=>{
         (async () => {
             try {
-                let token=jwtDecode(localStorage.getItem('access_token'))
                 const {data} = await axios.get(   
                                 API_URL+'api/artisan/'+id+"/", {
                                 headers: {
@@ -28,13 +28,13 @@ const ModifyPoint = props => {
                             console.log('not auth')
                         }
                     })()
-                },[])
+                },[id])
                     
 
 
 
     return (
-        <div>
+        <div className="point">
             {pdv ? <PointForm artisan={pdv}/> : <h1>Loading</h1>}
         </div>
     )

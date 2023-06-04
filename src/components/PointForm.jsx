@@ -3,6 +3,9 @@ import axios from "axios";
 import { API_URL } from "../constants";
 import jwtDecode from "jwt-decode";
 import Select from "react-select";
+
+import '../stylesheets/point-form.scss';
+
 const PointForm = props => {
     const [types, setTypes] = useState([])
     useEffect(()=>{
@@ -61,11 +64,6 @@ const PointForm = props => {
         let val = newValue.map( item => item.id)
         setArtisan(artisan => ({...artisan, types: val, type: newValue}))
     }
-
-    useEffect(()=> {
-        console.log(artisan.types)
-    }, [artisan])
-    
    
     const createArtisan = e => {
         e.preventDefault();
@@ -94,7 +92,7 @@ const PointForm = props => {
         axios.put(API_URL + "api/artisan/"+artisan.id+"/modify/", artisan)
                 .then(()=>{
                     setArtisan(initialArtisan)
-                    // window.location.href='/mes-points-de-vente/'
+                    window.location.href='/mes-points-de-vente/'
                 });
     }
     
@@ -126,11 +124,16 @@ const PointForm = props => {
     }
     
     return (
-        <form onSubmit={props.artisan ? editArtisan : createArtisan}>
+        <form onSubmit={props.artisan ? editArtisan : createArtisan} className="point-form">
             <fieldset>
                 <label htmlFor="name">Nom du point de vente</label>
                 <input type="text" name="name" onChange={e => {onChange(e); validate(e);}} value={artisan.name!="" ? artisan.name : ""}></input>
                 {error.name && <span className='err'>{error.name}</span>}
+            </fieldset> 
+            <fieldset id="type">
+                <label htmlFor="types">Types d'artisan</label>
+                <Select onChange={e => {onSelectChange(e); validate(e);}} onBlur={validate} isMulti name="types" className="basic-multi-select" classNamePrefix="select" value={artisan.type} options={types} getOptionLabel={option => option.name} getOptionValue={option => option.id}/>
+                {error.types && <span className='err'>{error.types}</span>}
             </fieldset> 
             <fieldset>
                 <label htmlFor="address">Adresse</label>
@@ -139,7 +142,7 @@ const PointForm = props => {
             </fieldset> 
             <fieldset>
                 <label htmlFor="zipcode">Code postal</label>
-                <input type="text" name="zipcode" onChange={e => {onChange(e); validate(e);}} value={artisan.zipcode!="" ? artisan.zipcode : ""}></input>
+                <input type="number" name="zipcode" onChange={e => {onChange(e); validate(e);}} value={artisan.zipcode!="" ? artisan.zipcode : ""}></input>
                 {error.zipcode && <span className='err'>{error.zipcode}</span>}
             </fieldset> 
             <fieldset>
@@ -156,11 +159,6 @@ const PointForm = props => {
                 <label htmlFor="website">Site web</label>
                 <input type="text" name="website" onChange={e => {onChange(e); validate(e);}} value={artisan.website!="" ? artisan.website : ""}></input>
                 {error.website && <span className='err'>{error.website}</span>}
-            </fieldset> 
-            <fieldset id="type">
-                <label htmlFor="types">Types d'artisan</label>
-                <Select onChange={e => {onSelectChange(e); validate(e);}} onBlur={validate} isMulti name="types" className="basic-multi-select" classNamePrefix="select" value={artisan.type} options={types} getOptionLabel={option => option.name} getOptionValue={option => option.id}/>
-                {error.types && <span className='err'>{error.types}</span>}
             </fieldset> 
             <button type="submit">envoyer</button>
         </form>

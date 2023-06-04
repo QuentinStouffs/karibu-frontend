@@ -1,3 +1,5 @@
+@import 'variables';
+
 .navigation__container {
     display: flex;
     justify-content: center;
@@ -6,14 +8,14 @@
     position: fixed;
     right: 5px;
     top: 75px;
-    background-color: black;
-    border: 1px solid #ccc;
+    background-color: $dark-color;
+    border: 1px solid $light-color;
     z-index: 9;
     a {
-        color: white;
+        color: $font-color;
         text-decoration: none;
         line-height: 1.8em;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $light-color;
         &:last-of-type {
             border: none;
         }

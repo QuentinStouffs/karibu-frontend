@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import "../stylesheets/header.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Navigation from "./Navigation";
 import { Link } from "react-router-dom";
+
+import "../stylesheets/header.scss";
+
 function Header() {
     const [showNav, setShowNav] = useState(false);
     const handleMenu = () => {

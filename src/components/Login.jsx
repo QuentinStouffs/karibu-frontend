@@ -2,6 +2,9 @@ import axios from "axios"
 import { useState } from "react"
 import { API_URL } from "../constants"
 
+import '../stylesheets/signin.scss';
+import '../stylesheets/userform.scss';
+
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -28,36 +31,39 @@ const Login = () => {
         window.location.href = '/'
     }
     return (
-        <div className="Auth-form-container">
-        <form className="Auth-form" onSubmit={submit}>
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
-            <fieldset>
-              <label>Username</label>
-              <input className="form-control mt-1" 
-                placeholder="Enter Username" 
-                name='username'  
-                type='text' value={username}
-                required 
-                onChange={e => setUsername(e.target.value)}/>
-            </fieldset>
-            <fieldset>
-              <label>Password</label>
-              <input name='password' 
-                type="password"     
-                className="form-control mt-1"
-                placeholder="Enter password"
-                value={password}
-                required
-                onChange={e => setPassword(e.target.value)}/>
-            </fieldset>
-            <fieldset>
-              <button type="submit" 
-                 className="btn btn-primary">Envoyer</button>
-            </fieldset>
-          </div>
-       </form>
-     </div>
+      <div className="signin">
+      
+            <div className="Auth-form-container">
+            <form className="userform" onSubmit={submit}>
+              <div className="Auth-form-content">
+                <h3 className="Auth-form-title">Sign In</h3>
+                <fieldset>
+                  <label>Username</label>
+                  <input className="form-control mt-1" 
+                    placeholder="Enter Username" 
+                    name='username'  
+                    type='text' value={username}
+                    required 
+                    onChange={e => setUsername(e.target.value)}/>
+                </fieldset>
+                <fieldset>
+                  <label>Password</label>
+                  <input name='password' 
+                    type="password"     
+                    className="form-control mt-1"
+                    placeholder="Enter password"
+                    value={password}
+                    required
+                    onChange={e => setPassword(e.target.value)}/>
+                </fieldset>
+                <fieldset>
+                  <button type="submit" 
+                    className="btn btn-primary">Envoyer</button>
+                </fieldset>
+              </div>
+          </form>
+        </div>
+      </div>
     )
 }
 export default Login

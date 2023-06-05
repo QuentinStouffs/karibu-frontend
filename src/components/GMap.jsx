@@ -1,9 +1,10 @@
 import { GoogleMap, Marker, useLoadScript, Autocomplete } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
-import '../stylesheets/gmap.scss'
 import axios from "axios";
-import { API_URL } from "../constants";
+import { API_URL, GMAPS_DARK_STYLE } from "../constants";
 import ShowArtisan from "./ShowArtisan";
+
+import '../stylesheets/gmap.scss'
 
 const placesLibrary = ['places']
 
@@ -46,7 +47,6 @@ const GMap = () => {
 
     function onPlaceChanged() {
         
-        console.log(searchResult)
         if (searchResult != null && typeof searchResult.getPlace === "function") {
           //variable to store the result
           const place = searchResult.getPlace();
@@ -86,8 +86,6 @@ const getArtisans = () => {
     })()
 }
 
-
-
     function onLoad(autocomplete) {
         setSearchResult(autocomplete);
       }
@@ -98,40 +96,49 @@ const getArtisans = () => {
                 <h1>Loading....</h1>
             ) : (
                 <div>
-                    
-                    <Autocomplete
-                        onPlaceChanged={onPlaceChanged}
-                        onLoad={onLoad}
-                        >
+                    <div className="home__inputs">
+                        
+                        <Autocomplete
+                            onPlaceChanged={onPlaceChanged}
+                            onLoad={onLoad}
+                            restrictions={{country: 'BE'}}
+                            >
 
-                    <input
-                        type="text"
-                        placeholder="Entrez une adresse"
-                        style={{
-                            boxSizing: `border-box`,
-                            border: `1px solid transparent`,
-                            width: `240px`,
-                            height: `32px`,
-                            padding: `0 12px`,
-                            borderRadius: `3px`,
-                            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                            fontSize: `14px`,
-                            outline: `none`,
-                            textOverflow: `ellipses`,
-                        }}
-                    />
+                        <input className="home__input"
+                            type="text"
+                            placeholder="Entrez une adresse"
+                            style={{
+                                boxSizing: `border-box`,
+                                border: `1px solid transparent`,
+                                width: `240px`,
+                                height: `32px`,
+                                padding: `0 12px`,
+                                borderRadius: `3px`,
+                                boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+                                fontSize: `14px`,
+                                outline: `none`,
+                                textOverflow: `ellipses`,
+                            }}
+                        />
 
-                </Autocomplete>
-                    <select className={"radius"} ref={radiusRef}>
-                        <option value='5000'>5Km </option>
-                        <option selected value='10000'>10Km </option>
-                        <option value='15000'>15Km </option>
-                        <option value='20000'>20Km </option>
-                    </select>
+                    </Autocomplete>
+                        <select className={"radius"} ref={radiusRef} >
+                            <option value='5000'>5Km </option>
+                            <option selected value='10000'>10Km </option>
+                            <option value='15000'>15Km </option>
+                            <option value='20000'>20Km </option>
+                        </select>
+                    </div>
+                
                     <GoogleMap 
                         mapContainerClassName="map-container"
                         center={geometry}
                         zoom={12}
+                        options={{styles: GMAPS_DARK_STYLE, 
+                            mapTypeControl: false,
+                            streetViewControl: false,
+                            rotateControl: false,
+                            fullscreenControl: false}}
                     >
                         {markers}
                     </GoogleMap>
@@ -139,8 +146,8 @@ const getArtisans = () => {
                 </div>
             )
         }
-
-        { selectedMarker ? <ShowArtisan artisan={selectedMarker} /> : null}
+        
+        {selectedMarker && <ShowArtisan show={selectedMarker ? true : false} handleClose={()=>setSelectedMarker(false)} artisan={selectedMarker} /> }
 
         </div>
     )

@@ -1,0 +1,30 @@
+@import 'variables';
+
+.artisan__container {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    background-color: $dark-color;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    color: $font-color;
+
+    a {
+        color: $font-color;
+    }
+
+    span {
+        border: 1px solid $secondary-color;
+        margin-right: 5px;
+        line-height: 2em;
+        padding: 2px 5px;
+        border-radius: 5px;
+    }
+
+    .close {
+        align-self: flex-end;
+        margin: 10px 10px 0 0;
+        cursor: pointer;
+    }
+}

@@ -1,12 +1,20 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+
+import '../stylesheets/artisan.scss';
+
 const ShowArtisan = props => {
-    console.log(props.artisan)
     
+    if(!props.show) {
+        return null;
+    }
         const types = props.artisan.type.map(t => (
             <span>{t.name}</span>
         ))
 
     return (
-        <div>
+        <div className="artisan__container">
+            <FontAwesomeIcon onClick={props.handleClose} className='close' icon={faXmarkCircle}/>
             <h2>{props.artisan.name}</h2>
             <div>{props.artisan.address}</div>
             <div>{props.artisan.zipcode} {props.artisan.city}</div>

@@ -79,7 +79,7 @@ const NewUserForm = props => {
             axios.post(API_URL+"api/users/", user)
             .then(()=> {
                 setUser(initialState)
-                props.onClose()
+                window.location.href='/login'
             })
         } else {
             return null;
@@ -97,7 +97,7 @@ const NewUserForm = props => {
         axios.put(API_URL+"api/users/"+user.id+"/", user)
             .then(()=> {
                 setUser(initialState)
-                props.onClose()
+                window.location.href='/'
             })
     }
 

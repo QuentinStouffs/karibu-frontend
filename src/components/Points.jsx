@@ -53,7 +53,7 @@ const Points = () => {
     const deletePoint = id => {
         try {
             axios.delete(   
-                        API_URL+'api/artisan/'+id+"/", {
+                        API_URL+'api/artisan/'+id+"/modify/", {
                         headers: {
                             'Content-Type': 'application/json'
                         }}

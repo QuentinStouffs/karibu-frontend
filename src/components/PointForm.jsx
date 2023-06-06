@@ -54,6 +54,7 @@ const PointForm = props => {
         zipcode: "",
         city: "",
         types: "",
+        general: "",
         isError:false
     }
 
@@ -73,9 +74,18 @@ const PointForm = props => {
     const sendArtisan = () => {
         if (error.isError==false){
             axios.post(API_URL+'api/artisan/', artisan)
-                .then(() => {
-                    setArtisan(initialArtisan);
-                    window.location.href='/mes-points-de-vente/'
+            .then((response) => {
+                if(response.status <= 400) {
+                    console.log(response)
+                        setArtisan(initialArtisan);
+                        window.location.href='/mes-points-de-vente/'
+                } else if (response.response.status >= 400) {
+                        setError({general: "veuillez vérifier les champs"})
+
+                    }
+                    }
+                    
+                    ).catch(e => {
                 })
         }else{
             return null;
@@ -125,6 +135,7 @@ const PointForm = props => {
     
     return (
         <form onSubmit={props.artisan ? editArtisan : createArtisan} className="point-form">
+            {error.general && <span className="err">{error.general}</span>}
             <fieldset>
                 <label htmlFor="name">Nom du point de vente</label>
                 <input type="text" name="name" onChange={e => {onChange(e); validate(e);}} value={artisan.name!="" ? artisan.name : ""}></input>

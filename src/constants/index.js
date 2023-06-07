@@ -1,4 +1,4 @@
-export const API_URL="http://localhost:8000/";
+export const API_URL=process.env.REACT_BASE_APP_URL;
 
 export const GMAPS_DARK_STYLE = [
     {

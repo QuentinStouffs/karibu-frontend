@@ -6,7 +6,7 @@ const Logout = () => {
     useEffect(()=> {
         (async()=>{
             try{
-                await axios.post(API_URL+"logout/", {
+                await axios.post(API_URL+"/api/logout/", {
                     refresh_token: localStorage.getItem('refresh_token')
                     }, {headers: {'Content-Type': 'application/json'}},
                     {withCredentials: true});

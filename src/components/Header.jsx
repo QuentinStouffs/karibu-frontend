@@ -19,7 +19,7 @@ function Header() {
             </Link>
             <div className="header__menu_container">
                 <FontAwesomeIcon className="header__menu_icon" icon={faBars} onClick={handleMenu}/>
-                <Navigation show={showNav}/>
+                <Navigation show={showNav} onClickOutside={() => {setShowNav(false)}}/>
             </div>
         </header>
     )

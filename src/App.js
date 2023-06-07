@@ -8,6 +8,7 @@ import NewPoint from './components/NewPoint';
 import ModifyPoint from './components/ModifyPoint';
 import Signin from './components/Signin';
 import Profile from './components/Profile';
+import 
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/mes-points-de-vente/" element={<Points/>}/> 
           <Route path="/new-artisan/" element={<NewPoint/>}/> 
           <Route path="/modify/:id" element={<ModifyPoint/>}/> 
+          <Route path="*" element={<NotFound/>}/> 
         </Routes>
       </BrowserRouter>
     </div>

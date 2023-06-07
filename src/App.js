@@ -8,7 +8,7 @@ import NewPoint from './components/NewPoint';
 import ModifyPoint from './components/ModifyPoint';
 import Signin from './components/Signin';
 import Profile from './components/Profile';
-import 
+import NotFound from './components/NotFound';
 
 
 function App() {

@@ -11,7 +11,6 @@
     top: 75px;
     background-color: $dark-color;
     border: 1px solid $light-color;
-    z-index: 9;
     a {
         color: $font-color;
         text-decoration: none;
@@ -20,5 +19,23 @@
         &:last-of-type {
             border: none;
         }
+    }
+}
+@media screen and (min-width: 1024px) {
+    .navigation__container {
+        flex-direction: row;
+        position: relative;
+        right: auto;
+        top: auto;
+        border: none;
+        a {
+            border: none;
+            margin: 0 0 0 10px;
+            padding-right: 10px;
+            border-right: 1px dotted $light-color;
+        }
+    }
+    .header__menu_icon {
+        display: none;
     }
 }

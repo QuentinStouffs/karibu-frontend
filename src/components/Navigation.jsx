@@ -26,11 +26,12 @@ const Navigation = (props) => {
          }
        }, [isAuth]);
 
-
-
-       if (!props.show) {
+    if (!props.show) {
+      if(window.innerWidth < 1024) {
         return null;
-       }
+      }
+    }
+
     return (
         
         <div className="navigation__container" ref={ref}>

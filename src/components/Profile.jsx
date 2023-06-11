@@ -25,12 +25,12 @@ const Profile = ()=> {
                   }
                  })()
        }, []);
-
-    console.log(user)
+       
 
     return (
         <div className="signin">
            { user && <NewUserForm user={user} />  }
+
         </div>
     )
 }

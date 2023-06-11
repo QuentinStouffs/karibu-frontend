@@ -6,4 +6,23 @@
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    &.legal {
+        flex-direction: column;
+    }
+}
+button {
+    background-color: $dark-color;
+    border: 1px solid $secondary-color;
+    border-radius:  5px;
+    padding: 10px 15px;
+    display: flex;
+    flex: 0 1 auto;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    font-size: 20px;
+    color: $font-color;
+    text-decoration: none;
+    cursor: pointer;
 }

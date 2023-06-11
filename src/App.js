@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -9,6 +9,7 @@ import ModifyPoint from './components/ModifyPoint';
 import Signin from './components/Signin';
 import Profile from './components/Profile';
 import NotFound from './components/NotFound';
+import Legal from './components/Legal';
 
 
 function App() {
@@ -25,8 +26,10 @@ function App() {
           <Route path="/mes-points-de-vente/" element={<Points/>}/> 
           <Route path="/new-artisan/" element={<NewPoint/>}/> 
           <Route path="/modify/:id" element={<ModifyPoint/>}/> 
+          <Route path="/legal" element={<Legal/>}/> 
           <Route path="*" element={<NotFound/>}/> 
         </Routes>
+        <footer style={{backgroundColor: "black"}}><Link to={`/legal`} style={{color: "#fff"}}>Mentions légales</Link></footer>
       </BrowserRouter>
     </div>
   );

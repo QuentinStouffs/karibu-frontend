@@ -90,7 +90,20 @@ const NewUserForm = props => {
         setUser(user => ({ ...user, [e.target.name]: e.target.value }))
     }
 
-
+    const deleteUser = id => {
+        try {
+            axios.delete(   
+                        API_URL+'api/users/'+user.id+'/', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }}
+                    ).then(() => {
+                        window.location.href='/logout';
+                    })
+               } catch (e) {
+                 console.log('not deleted', e)
+               }
+    }
     
     const editUser = e => {
         e.preventDefault();
@@ -138,6 +151,7 @@ const NewUserForm = props => {
                 <input type="password" name="confirmpassword" onChange={e => {validate(e); onChange(e); }} onBlur={validate} ></input>
             </fieldset>
             <button type="submit">Envoyer</button>
+            {props.user && <button type="button" onClick={()=>deleteUser(user.id)} >Supprimer mon compte</button> }
         </form>
     )
 

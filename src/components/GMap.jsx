@@ -18,7 +18,7 @@ const GMap = () => {
     const radiusRef = useRef()
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: 'AIzaSyAGAMa58azvuuVLgq5ScIso6jdw3e3XRT8',
+        googleMapsApiKey: 'GOOGLE_MAPS_API_KEY',
         libraries: placesLibrary
     });
 
